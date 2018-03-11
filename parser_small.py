@@ -46,12 +46,22 @@ def parse_data(save=True):
         depth_img_raw = cv2.applyColorMap(depth_img_in, cv2.COLORMAP_JET)
                 
         # mean and std scale on both rgb and d    
-        rgb_img_raw = scale(depth_img_in, axis=0, with_mean=True, with_std=True, copy=True )
-        depth_img_raw = [scale(depth_img_in[i], axis=0, with_mean=True, with_std=True, copy=True ) for i in range(len(depth_img_raw)) ]
+        #rgb_img_raw = [scale(rgb_img_in[i], axis=0, with_mean=True, with_std=True, copy=True ) for i in range(len(rgb_img_raw)) ]        
+        #depth_img_raw = [scale(depth_img_raw[i], axis=0, with_mean=True, with_std=True, copy=True ) for i in range(len(depth_img_raw)) ]
+        rgb_mean = np.mean(rgb_img_in)
+        rgb_std = np.std(rgb_img_in) ** 2
+        rgb_img_raw = [(rgb_img_in[i]-rgb_mean)/rgb_std for i in range(len(rgb_img_in))]
+                                                                        
+        depth_mean = np.mean(depth_img_raw)
+        depth_std = np.std(depth_img_raw) ** 2
+        depth_img_raw = [(depth_img_raw[i]-depth_mean)/depth_std for i in range(len(depth_img_raw))]                                                              
         
         # add a new axis to them to indicate which snapshot index for each image
-        rgb_img = np.expand_dims(rgb_img_in, axis=0)
-        depth_img = np.expand_dims(depth_img_in, axis = 0)
+        rgb_img = np.expand_dims(rgb_img_raw, axis=0)
+        depth_img = np.expand_dims(depth_img_raw, axis = 0)
+        
+        #print("RGB image shape = ",np.shape(rgb_img))
+        #print("depth image shape = ",np.shape(depth_img))
         
         #print(depth_img.shape)
         
@@ -71,12 +81,13 @@ def parse_data(save=True):
             '''
             if item_id not in data_dict_x:
                 data_dict_x[item_id] = np.empty([0,299,299,3])
-                data_dict_d[item_id] = np.empty([0,299,299])
+                data_dict_d[item_id] = np.empty([0,299,299,3])
             #print("#####################")
             #print(item_id)
             #print(np.size(data_dict_x[item_id]))
             #print(np.size(rgb_img))
             data_dict_x[item_id] = np.vstack([data_dict_x[item_id], rgb_img])
+            print(data_dict_d[item_id].shape,depth_img.shape)
             data_dict_d[item_id] = np.vstack([data_dict_d[item_id], depth_img])
             
             '''
@@ -120,7 +131,7 @@ def parse_data(save=True):
                 np.save(tmp_path +"/"+ str(batch) +"_y.npy", np.array(data_dict_y[item_id]))
 
                 data_dict_x[item_id] = np.empty([0,299,299,3])
-                data_dict_d[item_id] = np.empty([0,299,299])
+                data_dict_d[item_id] = np.empty([0,299,299,3])
                 data_dict_y[item_id] = []
                 batch_dict[item_id] = 1 + batch
                 
