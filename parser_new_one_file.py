@@ -44,11 +44,11 @@ def parse_data(save=True):
             # mean and std scale on both rgb and d    
             rgb_mean = np.mean(rgb_img_in)
             rgb_std = np.std(rgb_img_in) ** 2
-            rgb_img_raw = [(rgb_img_in[i]-rgb_mean)/rgb_std for i in range(len(rgb_img_in))]
+            rgb_img_raw = [(rgb_img_in[i]-rgb_mean)/rgb_std for t in range(len(rgb_img_in))]
 
             depth_mean = np.mean(depth_img_raw)
             depth_std = np.std(depth_img_raw) ** 2
-            depth_img_raw = [(depth_img_raw[i]-depth_mean)/depth_std for i in range(len(depth_img_raw))]                                                              
+            depth_img_raw = [(depth_img_raw[i]-depth_mean)/depth_std for t in range(len(depth_img_raw))]                                                              
 
             # add a new axis to them to indicate which snapshot index for each image
             rgb_img = np.expand_dims(rgb_img_raw, axis=0)
