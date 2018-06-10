@@ -77,7 +77,7 @@ Loss = i=0n( yi -ỹi)2
 Regularization
 The dropout method is applied as regularization techniques for our three models, which can reduce overfitting in neural networks by preventing complex co-adaptations on training data [11]. In this training process, drop probability is equal to 0.5, which maximizes the number of randomly-generated network structures, and prevents the neural network from being over-dependent on a specific set of neurons.
 
-B. Result and Evaluation
+B. Result and Evaluation 
 	
                                                   (a)                                                                           (b)
 Figure 7. (a). Training loss for different models (black: model 1, red: model 2, blue: model 3). (b). Test loss vs. dev loss (blue: test set, red: dev set).
@@ -120,8 +120,7 @@ Reference
 [8] Schwarz, Max, et al. "RGB-D object detection and semantic segmentation for autonomous manipulation in clutter." The International Journal of Robotics Research, 2016.
 [9] Firman, Michael. "RGBD datasets: Past, present and future." Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops. 2016.
 [10] Eitel, Andreas, et al. "Multimodal deep learning for robust RGB-D object recognition." Intelligent Robots and Systems (IROS), 2015 IEEE/RSJ International Conference on. IEEE, 2015.		
-[11] Kingma, Diederik P., and Jimmy Ba. "Adam: A method for stochastic optimization." arXiv preprint arXiv:1412.6980, 2014.					
-[12] Hinton, Geoffrey E., et al. “Improving nerural networks by preventing co-adaptation of feature detectors.” arXiv preprint arXiv:1207.0580, 2012.		
+[11] Kingma, Diederik P., and Jimmy Ba. "Adam: A method for stochastic optimization." arXiv preprint arXiv:1412.6980, 2014.[12] Hinton, Geoffrey E., et al. “Improving nerural networks by preventing co-adaptation of feature detectors.” arXiv preprint arXiv:1207.0580, 2012.		
 [13] Gupta, Saurabh, Judy Hoffman, and Jitendra Malik. "Cross modal distillation for supervision transfer." Computer Vision and Pattern Recognition (CVPR), 2016 IEEE Conference on. IEEE, 2016.
 [14] Porzi, Lorenzo, et al. "Depth-aware convolutional neural networks for accurate 3D pose estimation in RGB-D images." Intelligent Robots and Systems (IROS), 2017 IEEE/RSJ International Conference on. IEEE, 2017.
 			
